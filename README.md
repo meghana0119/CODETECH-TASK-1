@@ -6,9 +6,9 @@ DURATION: JULY TO AUGUST 2024
 MENTOR: Neela Santhosh Kumar
 
 
-OVERVIEW OF THE PROJECT
-Project: Developing a sentiment analysis model to classify movie reviews as positive or negative.  
-The IMDb Movie Reviews Sentiment Analysis project aims to automatically classify movie reviews as positive or negative. Using natural language processing (NLP) and machine learning, the project transforms raw text data into actionable insights by following a structured approach.
+OVERVIEW OF THE PROJECT: Developing a sentiment analysis model to classify movie reviews as positive or negative.
+
+Project: The IMDb Movie Reviews Sentiment Analysis project aims to automatically classify movie reviews as positive or negative. Using natural language processing (NLP) and machine learning, the project transforms raw text data into actionable insights by following a structured approach.
 
 ![Screenshot (75)](https://github.com/user-attachments/assets/f82e0782-fedb-4515-90bf-f799c348f32e)
 ![Screenshot (76)](https://github.com/user-attachments/assets/08bccfaf-9519-4b1e-b02b-85cef2656eee)
