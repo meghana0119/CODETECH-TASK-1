@@ -1,9 +1,10 @@
-NAME:PILLA MEGHANA
-COMPANY:CODETECH SOLUTIONS
-ID::CT08DS4480
-DOMAIN:MACHINE LEARNING
-DURATION:JULY TO AUGUST 2024
-MENTOR:Neela Santhosh Kumar 
+NAME: PILLA MEGHANA  
+COMPANY: CODETECH SOLUTIONS  
+ID: CT08DS4480  
+DOMAIN: MACHINE LEARNING  
+DURATION: JULY TO AUGUST 2024  
+MENTOR: Neela Santhosh Kumar
+
 
 OVERVIEW OF THE PROJECT
 Project:Developing a sentiment analysis model to classify movie reviews as positive ornegative. Use a dataset like the IMDb Movie Reviews dataset for training and testing.
