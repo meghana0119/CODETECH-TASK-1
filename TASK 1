@@ -1,0 +1,77 @@
+"""This code performs sentiment analysis on IMDb movie reviews by preprocessing the text data, converting it into numerical features using TF-IDF, and training a Naive Bayes model to classify the reviews as positive or negative."""
+# Import necessary libraries
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+from sklearn.model_selection import train_test_split
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.naive_bayes import MultinomialNB
+from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
+from imblearn.over_sampling import RandomOverSampler
+
+import nltk
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
+from nltk.stem import WordNetLemmatizer
+
+import tensorflow as tf
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense, Embedding, LSTM, Dropout
+
+# Download NLTK data
+nltk.download('stopwords')
+nltk.download('punkt')
+nltk.download('wordnet')
+
+# Load the IMDb Movie Reviews dataset
+# Use on_bad_lines parameter to handle bad lines in newer pandas versions
+# Explicitly set the 'review' column to string type
+df = pd.read_csv('IMDB Dataset.csv', quoting=3, on_bad_lines='skip', dtype={'review': str})
+
+
+# Text preprocessing function
+def preprocess_text(text):
+    # Handle potential NaN values
+    if isinstance(text, float) and np.isnan(text):
+        return ''
+    tokens = word_tokenize(text.lower())
+    tokens = [word for word in tokens if word.isalnum() and word not in stopwords.words('english')]
+    lemmatizer = WordNetLemmatizer()
+    tokens = [lemmatizer.lemmatize(word) for word in tokens]
+    return ' '.join(tokens)
+
+# Apply preprocessing to the reviews
+df['cleaned_review'] = df['review'].apply(preprocess_text)
+
+# Convert the sentiment labels to binary (1 for positive, 0 for negative)
+df['sentiment'] = df['sentiment'].apply(lambda x: 1 if x == 'positive' else 0)
+
+# Split the data into training and testing sets
+X = df['cleaned_review']
+y = df['sentiment']
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Vectorize the text data using TF-IDF
+vectorizer = TfidfVectorizer(max_features=5000)
+X_train_vec = vectorizer.fit_transform(X_train).toarray()
+X_test_vec = vectorizer.transform(X_test).toarray()
+ros = RandomOverSampler(random_state=42)
+X_train_resampled, y_train_resampled = ros.fit_resample(X_train_vec, y_train)
+
+# Option 1: Naive Bayes Model
+nb_model = MultinomialNB()
+nb_model.fit(X_train_resampled, y_train_resampled)
+
+# Predictions and evaluation for Naive Bayes
+y_pred_nb = nb_model.predict(X_test_vec)
+
+print("Naive Bayes Model")
+print(f"Accuracy: {accuracy_score(y_test, y_pred_nb)}")
+print("Confusion Matrix:")
+sns.heatmap(confusion_matrix(y_test, y_pred_nb), annot=True, fmt='d')
+plt.show()
+print("Classification Report:")
+print(classification_report(y_test, y_pred_nb))
+print(df['sentiment'].value_counts())
