@@ -18,26 +18,39 @@ The IMDb Movie Reviews Sentiment Analysis project aims to automatically classify
 Core Objectives:
 
 Sentiment Classification: Accurately predict whether a movie review is positive or negative.
+
 Text Cleaning: Preprocess review text to remove noise and improve model accuracy.
+
 Balanced Learning: Address class imbalance to ensure fair and unbiased predictions.
+
 Performance Measurement: Evaluate the model using robust metrics to ensure reliability.
 
 Key Activities:
 
 Data Preparation: Load and clean the IMDb movie reviews dataset, handling any inconsistencies and converting the sentiment labels to binary form.
+
 Text Preprocessing: Apply NLP techniques—such as tokenization, stopword removal, and lemmatization—to standardize and simplify the review text.
+
 Feature Extraction: Use TF-IDF vectorization to convert textual data into numerical features that the model can interpret.
+
 Class Imbalance Handling: Use oversampling methods to ensure the model learns equally from both positive and negative reviews.
+
 Model Training: Train a Multinomial Naive Bayes model, well-suited for text classification, on the processed and balanced dataset.
+
 Model Evaluation: Assess the model's accuracy and effectiveness through metrics like accuracy, precision, recall, and F1-score, along with a confusion matrix for detailed insights.
 
 Technologies Used:
 
 Python: Core programming language for implementing the solution.
+
 Pandas, NumPy: Tools for data handling and manipulation.
+
 NLTK: Library for text processing tasks like tokenization and lemmatization.
+
 Scikit-learn: Framework for machine learning and model evaluation.
+
 Imbalanced-learn: Used to address class imbalance issues.
+
 Matplotlib, Seaborn: Libraries for visualizing model performance and data characteristics.
 
 Conclusion:
